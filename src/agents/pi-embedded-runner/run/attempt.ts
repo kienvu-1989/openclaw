@@ -124,6 +124,7 @@ import {
 import { pruneProcessedHistoryImages } from "./history-image-prune.js";
 import { detectAndLoadPromptImages } from "./images.js";
 import type { EmbeddedRunAttemptParams, EmbeddedRunAttemptResult } from "./types.js";
+import { wrapStreamFnWithDebugLogger } from "./debug-payload-logger.js";
 
 type PromptBuildHookRunner = {
   hasHooks: (hookName: "before_prompt_build" | "before_agent_start") => boolean;
@@ -1163,6 +1164,12 @@ export async function runEmbeddedAttempt(
           activeSession.agent.streamFn,
         );
       }
+
+      // Add debug payload logger to unconditionally log all payloads to ~/.openclaw/logs
+      activeSession.agent.streamFn = wrapStreamFnWithDebugLogger(
+        activeSession.agent.streamFn,
+        params.runId,
+      );
 
       try {
         const prior = await sanitizeSessionHistory({

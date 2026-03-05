@@ -11,6 +11,9 @@ RAW_SANDBOX_SETTING="${OPENCLAW_SANDBOX:-}"
 SANDBOX_ENABLED=""
 DOCKER_SOCKET_PATH="${OPENCLAW_DOCKER_SOCKET:-}"
 
+export OPENCLAW_CONFIG_DIR="/home/kienvu/openclaw/.openclaw"
+export OPENCLAW_WORKSPACE_DIR="/home/kienvu/openclaw/.openclaw/workspace"
+
 fail() {
   echo "ERROR: $*" >&2
   exit 1
