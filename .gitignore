@@ -1,6 +1,7 @@
 .openclaw/
 node_modules
 **/node_modules/
+.openclaw/
 .env
 docker-compose.extra.yml
 dist
