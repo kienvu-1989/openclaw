@@ -59,6 +59,7 @@ RUN if [ -n "$OPENCLAW_INSTALL_BROWSER" ]; then \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*; \
   fi
+RUN apt-get update && apt-get install -y chromium
 
 # Optionally install Docker CLI for sandbox container management.
 # Build with: docker build --build-arg OPENCLAW_INSTALL_DOCKER_CLI=1 ...
